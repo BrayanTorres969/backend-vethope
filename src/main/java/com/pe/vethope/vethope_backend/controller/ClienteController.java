@@ -5,6 +5,7 @@ import com.pe.vethope.vethope_backend.dto.ClienteDTO;
 import com.pe.vethope.vethope_backend.service.ClienteService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,8 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<ClienteDTO> crear(@RequestBody ClienteDTO clienteDTO) {
-        return ResponseEntity.ok(clienteService.crear(clienteDTO));
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteDTO);
     }
 
     @PutMapping("/{id}")
