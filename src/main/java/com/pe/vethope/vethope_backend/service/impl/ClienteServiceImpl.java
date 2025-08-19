@@ -2,6 +2,7 @@ package com.pe.vethope.vethope_backend.service.impl;
 
 import com.pe.vethope.vethope_backend.dto.ClienteDTO;
 import com.pe.vethope.vethope_backend.entity.Cliente;
+import com.pe.vethope.vethope_backend.exception.NotFoundException;
 import com.pe.vethope.vethope_backend.mapper.ClienteMapper;
 import com.pe.vethope.vethope_backend.repository.ClienteRepository;
 import com.pe.vethope.vethope_backend.service.ClienteService;
@@ -28,7 +29,7 @@ public class ClienteServiceImpl implements ClienteService {
     public ClienteDTO buscarPorId(Long id) {
         Cliente cliente = clienteRepository.findById(id)
                 .filter(Cliente::getActivo)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+                .orElseThrow(() -> new NotFoundException("Cliente con ID " + id + " no encontrado"));
         return clienteMapper.toDTO(cliente);
     }
 
@@ -43,7 +44,7 @@ public class ClienteServiceImpl implements ClienteService {
     public ClienteDTO actualizar(Long id, ClienteDTO clienteDTO) {
         Cliente cliente = clienteRepository.findById(id)
                 .filter(Cliente::getActivo)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+                .orElseThrow(() -> new NotFoundException("Cliente con ID " + id + " no encontrado"));
 
         cliente.setNombre(clienteDTO.getNombre());
         cliente.setApellido(clienteDTO.getApellido());
@@ -57,7 +58,7 @@ public class ClienteServiceImpl implements ClienteService {
     public void eliminar(Long id) {
         Cliente cliente = clienteRepository.findById(id)
                 .filter(Cliente::getActivo)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+                .orElseThrow(() -> new NotFoundException("Cliente con ID " + id + " no encontrado"));
         cliente.setActivo(false);
         clienteRepository.save(cliente);
     }
