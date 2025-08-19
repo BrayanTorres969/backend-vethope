@@ -21,12 +21,13 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public List<ClienteDTO> listarTodos() {
-        return clienteMapper.toDTOList(clienteRepository.findAll());
+        return clienteMapper.toDTOList(clienteRepository.findByActivoTrue());
     }
 
     @Override
     public ClienteDTO buscarPorId(Long id) {
         Cliente cliente = clienteRepository.findById(id)
+                .filter(Cliente::getActivo)
                 .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
         return clienteMapper.toDTO(cliente);
     }
@@ -40,6 +41,7 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public ClienteDTO actualizar(Long id, ClienteDTO clienteDTO) {
         Cliente cliente = clienteRepository.findById(id)
+                .filter(Cliente::getActivo)
                 .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
 
         cliente.setNombre(clienteDTO.getNombre());
@@ -52,6 +54,10 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void eliminar(Long id) {
-        clienteRepository.deleteById(id);
+        Cliente cliente = clienteRepository.findById(id)
+                .filter(Cliente::getActivo)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+        cliente.setActivo(false);
+        clienteRepository.save(cliente);
     }
 }
