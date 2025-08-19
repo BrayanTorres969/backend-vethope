@@ -26,5 +26,6 @@ public class Cliente {
 
     private String telefono;
 
+    @Column(nullable = false)
     private Boolean activo = true;
 }

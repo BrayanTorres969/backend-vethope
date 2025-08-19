@@ -18,6 +18,4 @@ public class ClienteDTO {
     private String email;
 
     private String telefono;
-
-    private Boolean activo = true;
 }
