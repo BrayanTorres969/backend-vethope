@@ -25,4 +25,7 @@ public class Cliente {
     private String email;
 
     private String telefono;
+
+    @Column(nullable = false)
+    private Boolean activo = true;
 }
