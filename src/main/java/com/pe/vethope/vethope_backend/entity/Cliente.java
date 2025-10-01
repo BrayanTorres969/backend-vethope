@@ -3,6 +3,9 @@ package com.pe.vethope.vethope_backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "clientes")
 @Getter
@@ -28,4 +31,8 @@ public class Cliente {
 
     @Column(nullable = false)
     private Boolean activo = true;
+
+    //Relaciones
+    @OneToMany(mappedBy = "duenio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Mascota> mascotas = new ArrayList<>();
 }
