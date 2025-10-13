@@ -26,7 +26,7 @@ public class ProductoController {
         return ResponseEntity.ok(productoService.buscarPorId(id));
     }
 
-    @PostMapping
+    @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<ProductoDTO> crear(@RequestBody ProductoDTO productoDTO) {
         ProductoDTO nuevoProducto = productoService.crear(productoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoProducto);
