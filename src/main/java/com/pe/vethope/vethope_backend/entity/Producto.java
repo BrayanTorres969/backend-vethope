@@ -22,7 +22,7 @@ public class Producto {
     private String descripcion;
 
     @Lob
-    @Column(name = "imagen", columnDefinition = "BYTEA")
+    @Column(name = "imagen",nullable = true, columnDefinition = "bytea")
     private byte[] imagen;
 
     private String categoria;
