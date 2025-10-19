@@ -12,7 +12,7 @@ public class ProductoDTO {
 
     private String nombre;
 
-    private byte[] imagen;
+    private String imagen;
 
     private String descripcion;
 

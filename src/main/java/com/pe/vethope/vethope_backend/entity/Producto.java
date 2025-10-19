@@ -21,9 +21,7 @@ public class Producto {
 
     private String descripcion;
 
-    @Lob
-    @Column(name = "imagen",nullable = true, columnDefinition = "bytea")
-    private byte[] imagen;
+    private String imagen;
 
     private String categoria;
 
