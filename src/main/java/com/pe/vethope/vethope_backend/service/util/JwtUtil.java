@@ -11,7 +11,7 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    @Value("${jwt.secret:mySecretKey}")
+    @Value("${JWT_SECRET}")
     private String jwtSecret;
 
     @Value("${jwt.expiration:86400000}") // 24 horas en milisegundos
