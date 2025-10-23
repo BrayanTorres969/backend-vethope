@@ -53,7 +53,7 @@ public class CitaServiceImpl implements CitaService {
         cita.setCliente(cliente);
         cita.setMascota(mascota);
         cita.setUsuario(usuario);
-
+        cita.setActivo(true);
         return citaMapper.toDTO(citaRepository.save(cita));
     }
 
