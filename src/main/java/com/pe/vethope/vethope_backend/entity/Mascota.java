@@ -25,10 +25,10 @@ public class Mascota {
     public String raza;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = false)
-    private Cliente duenio;
+    @JoinColumn(name = "id_cliente", nullable = false)
+    private Cliente cliente;
 
-    public double altura;
+    public String especie;
 
     @Column(nullable = false)
     private Boolean activo = true;

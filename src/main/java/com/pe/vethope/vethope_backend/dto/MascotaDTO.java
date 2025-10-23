@@ -9,16 +9,12 @@ import lombok.*;
 @Builder
 public class MascotaDTO {
 
-    private Long id;
-
+    private Long id_mascota;
     private String nombre;
-
     private int edad;
-
+    private double peso;
     private String raza;
-
-    private double altura;
-
-    private ClienteDTO duenioId;
+    private String especie;
+    private Long id_cliente;
 
 }

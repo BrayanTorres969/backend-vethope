@@ -33,6 +33,6 @@ public class Cliente {
     private Boolean activo = true;
 
     //Relaciones
-    @OneToMany(mappedBy = "duenio", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Mascota> mascotas = new ArrayList<>();
 }
