@@ -31,7 +31,6 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/usuarios/register").permitAll()
                         .anyRequest().authenticated()
                 )
                 // 👇 aquí agregamos el filtro JWT antes de UsernamePasswordAuthenticationFilter
