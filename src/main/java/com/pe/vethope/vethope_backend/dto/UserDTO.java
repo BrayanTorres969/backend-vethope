@@ -1,5 +1,6 @@
 package com.pe.vethope.vethope_backend.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 @Getter
@@ -8,6 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class UserDTO {
+
+    @Schema(description = "ID del usuario", example = "1", accessMode = Schema.AccessMode.READ_ONLY)
     private Long id_usuario;
 
     private String username;
