@@ -1,5 +1,6 @@
 package com.pe.vethope.vethope_backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
@@ -8,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 
     @Schema(description = "ID del usuario", example = "1", accessMode = Schema.AccessMode.READ_ONLY)
