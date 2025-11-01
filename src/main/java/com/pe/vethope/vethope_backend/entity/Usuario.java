@@ -1,5 +1,6 @@
 package com.pe.vethope.vethope_backend.entity;
 
+import com.pe.vethope.vethope_backend.enums.Rol;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,7 +34,8 @@ public class Usuario {
 
     private String password;
 
-    private String rol;
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
 
     @Column(nullable = false)
     private Boolean activo = true;
