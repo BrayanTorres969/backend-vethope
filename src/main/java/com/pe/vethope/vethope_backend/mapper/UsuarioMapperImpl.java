@@ -2,6 +2,7 @@ package com.pe.vethope.vethope_backend.mapper;
 
 import com.pe.vethope.vethope_backend.dto.UserDTO;
 import com.pe.vethope.vethope_backend.entity.Usuario;
+import com.pe.vethope.vethope_backend.enums.Rol;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class UsuarioMapperImpl implements UsuarioMapper {
                 .dni(usuario.getDni())
                 .correo(usuario.getCorreo())
                 .telefono(usuario.getTelefono())
-                .rol(usuario.getRol())
+                .rol(usuario.getRol() != null ? usuario.getRol().name() : null)
                 // No incluimos password en el DTO por seguridad
                 .build();
     }
@@ -40,7 +41,7 @@ public class UsuarioMapperImpl implements UsuarioMapper {
                 .correo(userDTO.getCorreo())
                 .telefono(userDTO.getTelefono())
                 .password(userDTO.getPassword())
-                .rol(userDTO.getRol())
+                .rol(userDTO.getRol() != null ? Rol.valueOf(userDTO.getRol().toUpperCase()) : null)
                 .activo(true)
                 .build();
     }
