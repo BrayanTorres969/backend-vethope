@@ -41,7 +41,7 @@ public class UsuarioService {
             throw new RuntimeException("Credenciales inválidas");
         }
 
-        String token = jwtUtil.generateJwtToken(usuario.getUsername());
+        String token = jwtUtil.generateJwtToken(usuario);
         UserDTO userDTO = usuarioMapper.toDTO(usuario);
 
         return LoginResponse.builder()

@@ -1,5 +1,6 @@
 package com.pe.vethope.vethope_backend.service.util;
 
+import com.pe.vethope.vethope_backend.entity.Usuario;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.Map;
 
 @Component
 public class JwtUtil {
@@ -21,9 +23,10 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(jwtSecret.getBytes());
     }
 
-    public String generateJwtToken(String username) {
+    public String generateJwtToken(Usuario usuario) {
         return Jwts.builder()
-                .subject(username)
+                .subject(usuario.getUsername())
+                .claims(Map.of("rol", usuario.getRol().name()))
                 .issuedAt(new Date())
                 .expiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(getSigningKey())
@@ -39,19 +42,24 @@ public class JwtUtil {
                 .getSubject();
     }
 
+    // Recuperar el rol del token
+    public String getRolFromJwtToken(String token) {
+        return (String) Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .get("rol");
+    }
+
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(authToken);
             return true;
-        } catch (MalformedJwtException e) {
-            System.err.println("Token JWT inválido: " + e.getMessage());
-        } catch (ExpiredJwtException e) {
-            System.err.println("Token JWT expirado: " + e.getMessage());
-        } catch (UnsupportedJwtException e) {
-            System.err.println("Token JWT no soportado: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
-            System.err.println("JWT claims string está vacío: " + e.getMessage());
+        } catch ( JwtException | IllegalArgumentException e) {
+            System.err.println("Error validando token: " + e.getMessage());
+            return false;
         }
-        return false;
+
     }
 }
