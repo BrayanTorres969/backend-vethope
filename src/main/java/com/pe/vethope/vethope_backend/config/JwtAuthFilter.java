@@ -1,5 +1,6 @@
 package com.pe.vethope.vethope_backend.config;
 
+import com.pe.vethope.vethope_backend.entity.UsuarioDetails;
 import com.pe.vethope.vethope_backend.service.util.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -36,19 +37,24 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 String username = jwtUtil.getUsernameFromJwtToken(jwt);
                 String rol = jwtUtil.getRolFromJwtToken(jwt);
 
-                var authorities = List.of(new SimpleGrantedAuthority(rol));
+                //var authorities = List.of(new SimpleGrantedAuthority(rol));
+                System.out.println("JWT válido - Usuario: " + username + ", Rol: " + rol);
+
+                UsuarioDetails usuarioDetails = new UsuarioDetails(null, username, "", rol);
 
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(
-                                new User(username, "", authorities),
+                                usuarioDetails,
                                 null,
-                                authorities
+                                usuarioDetails.getAuthorities()
                         );
 
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 // Aquí se inyecta el usuario autenticado en el contexto
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+            }else{
+                System.out.println("JWT inválido");
             }
         }
 
