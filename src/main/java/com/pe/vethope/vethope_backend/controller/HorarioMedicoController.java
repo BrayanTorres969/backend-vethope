@@ -18,7 +18,7 @@ import java.util.List;
 @Tag(name = "Horarios Médicos", description = "Operaciones relacionadas con la gestión de horarios de los médicos")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
-@PreAuthorize("hasAnyRole('ADMIN', 'MEDICO', 'RECEPCIONISTA')")
+@PreAuthorize("hasAnyAuthority('ADMIN', 'RECEPCIONISTA', 'MEDICO')")
 public class HorarioMedicoController {
 
     private final HorarioMedicoService horarioMedicoService;
