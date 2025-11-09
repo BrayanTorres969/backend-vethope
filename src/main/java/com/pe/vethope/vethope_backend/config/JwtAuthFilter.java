@@ -37,7 +37,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 String username = jwtUtil.getUsernameFromJwtToken(jwt);
                 String rol = jwtUtil.getRolFromJwtToken(jwt);
 
-                //var authorities = List.of(new SimpleGrantedAuthority(rol));
+                var authorities = List.of(new SimpleGrantedAuthority("ROLE_" + rol.toUpperCase()));
                 System.out.println("JWT válido - Usuario: " + username + ", Rol: " + rol);
 
                 UsuarioDetails usuarioDetails = new UsuarioDetails(null, username, "", rol);
@@ -46,7 +46,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                         new UsernamePasswordAuthenticationToken(
                                 usuarioDetails,
                                 null,
-                                usuarioDetails.getAuthorities()
+                                authorities
                         );
 
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
