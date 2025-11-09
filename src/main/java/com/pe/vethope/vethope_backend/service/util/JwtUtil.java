@@ -24,6 +24,12 @@ public class JwtUtil {
     }
 
     public String generateJwtToken(Usuario usuario) {
+        String role = usuario.getRol().name();
+
+        // Agregar prefijo ROLE_ si no lo tiene
+        if (!role.startsWith("ROLE_")) {
+            role = "ROLE_" + role.toUpperCase();
+        }
         return Jwts.builder()
                 .subject(usuario.getUsername())
                 .claims(Map.of("rol", usuario.getRol().name()))
