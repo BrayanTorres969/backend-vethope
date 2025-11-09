@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/api/v1/productos")
 @RequiredArgsConstructor
 @Tag(name = "Productos", description = "Operaciones relacionadas con la gestión de productos")
-@PreAuthorize("hasAnyRole('ADMIN', 'RECEPCIONISTA')")
+@PreAuthorize("hasAnyAuthority('ADMIN', 'RECEPCIONISTA')")
 public class ProductoController {
 
     private final ProductoService productoService;
