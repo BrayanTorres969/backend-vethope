@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/v1/usuarios")
 @CrossOrigin(origins = "*")
 @Tag(name = "Usuarios", description = "Endpoints para la gestión de usuarios del sistema")
-@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 public class UsuarioController {
 
     @Autowired
