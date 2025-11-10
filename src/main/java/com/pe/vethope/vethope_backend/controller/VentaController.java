@@ -2,6 +2,8 @@ package com.pe.vethope.vethope_backend.controller;
 
 
 import com.pe.vethope.vethope_backend.dto.VentaDTO;
+import com.pe.vethope.vethope_backend.dto.request.VentaRequestDTO;
+import com.pe.vethope.vethope_backend.dto.response.VentaResponseDTO;
 import com.pe.vethope.vethope_backend.service.VentaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -32,7 +34,7 @@ public class VentaController {
             @ApiResponse(responseCode = "200", description = "Lista de ventas obtenida correctamente"),
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
-    public ResponseEntity<List<VentaDTO>> listar() {
+    public ResponseEntity<List<VentaResponseDTO>> listar() {
         return ResponseEntity.ok(ventaService.listarTodos());
     }
 
@@ -45,7 +47,7 @@ public class VentaController {
             @ApiResponse(responseCode = "200", description = "Venta encontrada correctamente"),
             @ApiResponse(responseCode = "404", description = "Venta no encontrada")
     })
-    public ResponseEntity<VentaDTO> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<VentaResponseDTO> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(ventaService.buscarPorId(id));
     }
 
@@ -58,8 +60,8 @@ public class VentaController {
             @ApiResponse(responseCode = "201", description = "Venta registrada correctamente"),
             @ApiResponse(responseCode = "400", description = "Datos de la venta inválidos")
     })
-    public ResponseEntity<VentaDTO> crear(@RequestBody VentaDTO ventaDTO) {
-        VentaDTO nuevaVenta = ventaService.crear(ventaDTO);
+    public ResponseEntity<VentaResponseDTO> crear(@RequestBody VentaRequestDTO ventaDTO) {
+        VentaResponseDTO nuevaVenta = ventaService.crear(ventaDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevaVenta);
     }
 
@@ -73,7 +75,7 @@ public class VentaController {
             @ApiResponse(responseCode = "404", description = "Venta no encontrada"),
             @ApiResponse(responseCode = "400", description = "Datos inválidos en la solicitud")
     })
-    public ResponseEntity<VentaDTO> actualizar(@PathVariable Long id, @RequestBody VentaDTO ventaDTO) {
+    public ResponseEntity<VentaResponseDTO> actualizar(@PathVariable Long id, @RequestBody VentaRequestDTO ventaDTO) {
         return ResponseEntity.ok(ventaService.actualizar(id, ventaDTO));
     }
 
