@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/api/v1/horarios")
 @Tag(name = "Horarios Médicos", description = "Operaciones relacionadas con la gestión de horarios de los médicos")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @PreAuthorize("hasAnyAuthority('ADMIN', 'RECEPCIONISTA', 'MEDICO')")
 public class HorarioMedicoController {
 

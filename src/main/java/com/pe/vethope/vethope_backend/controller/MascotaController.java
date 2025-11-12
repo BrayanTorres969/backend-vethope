@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/v1/mascotas")
 @Tag(name = "Mascotas", description = "Operaciones relacionadas con la gestión de mascotas")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class MascotaController {
 
     private final MascotaService mascotaService;
