@@ -80,6 +80,13 @@ public class UsuarioService {
                 .toList();
     }
 
+    public List<UserDTO> listarMedicos() {
+        List<Usuario> doctores = usuarioRepository.findAllMedicosActivos();
+        return doctores.stream()
+                .map(usuarioMapper::toDTO)
+                .toList();
+    }
+
     public UserDTO editarUsuario(Long id, UserDTO userDTO) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
