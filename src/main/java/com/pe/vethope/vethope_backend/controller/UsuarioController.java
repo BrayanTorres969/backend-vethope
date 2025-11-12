@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/usuarios")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @Tag(name = "Usuarios", description = "Endpoints para la gestión de usuarios del sistema")
 //@PreAuthorize("hasAnyAuthority('ADMIN')")
 public class UsuarioController {

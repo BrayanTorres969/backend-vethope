@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/v1/citas")
 @Tag(name = "Citas", description = "Operaciones relacionadas con la gestión de citas médicas")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+//(@CrossOrigin(origins = "*")
 public class CitaController {
 
     private final CitaService citaService;
