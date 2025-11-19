@@ -33,7 +33,7 @@ public class AuthController {
     }
 
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/register")
     @Operation(summary = "Registrar un nuevo usuario", description = "Permite registrar un usuario con datos básicos y rol")
     public ResponseEntity<UserDTO> register(@RequestBody UserDTO userDTO) {
