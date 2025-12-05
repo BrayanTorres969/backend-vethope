@@ -10,6 +10,8 @@ import lombok.*;
 @Builder
 public class ProductoDTO {
 
+    private Long id_producto;
+
     private String nombre;
 
     private String imagen;
